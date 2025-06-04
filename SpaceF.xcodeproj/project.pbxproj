@@ -8,12 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */; };
-		81C28EA42DEF888600F7E6E5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EA32DEF888600F7E6E5 /* ContentView.swift */; };
 		81C28EA62DEF888800F7E6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA52DEF888800F7E6E5 /* Assets.xcassets */; };
 		81C28EA92DEF888800F7E6E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */; };
 		81C28EB32DEF888800F7E6E5 /* SpaceFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EB22DEF888800F7E6E5 /* SpaceFTests.swift */; };
 		81C28EBD2DEF888800F7E6E5 /* SpaceFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EBC2DEF888800F7E6E5 /* SpaceFUITests.swift */; };
 		81C28EBF2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EBE2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift */; };
+		81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EEF2DEF8E4800F7E6E5 /* Article.swift */; };
+		81C28EF52DEF8EAE00F7E6E5 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */; };
+		81C28EF62DEF8EAE00F7E6E5 /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */; };
+		81C28EF82DEF8EB600F7E6E5 /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */; };
+		81C28EFB2DEF8EFB00F7E6E5 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */; };
+		81C28EFE2DEF943C00F7E6E5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EFD2DEF943C00F7E6E5 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,7 +41,6 @@
 /* Begin PBXFileReference section */
 		81C28E9E2DEF888600F7E6E5 /* SpaceF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFApp.swift; sourceTree = "<group>"; };
-		81C28EA32DEF888600F7E6E5 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		81C28EA52DEF888800F7E6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		81C28EAE2DEF888800F7E6E5 /* SpaceFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,6 +48,12 @@
 		81C28EB82DEF888800F7E6E5 /* SpaceFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EBC2DEF888800F7E6E5 /* SpaceFUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFUITests.swift; sourceTree = "<group>"; };
 		81C28EBE2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		81C28EEF2DEF8E4800F7E6E5 /* Article.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
+		81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
+		81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
+		81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		81C28EFD2DEF943C00F7E6E5 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,8 +104,12 @@
 		81C28EA02DEF888600F7E6E5 /* SpaceF */ = {
 			isa = PBXGroup;
 			children = (
+				81C28EEE2DEF8E2600F7E6E5 /* Models */,
+				81C28EF22DEF8E8300F7E6E5 /* Views */,
+				81C28EF12DEF8E7B00F7E6E5 /* ViewModels */,
+				81C28EF92DEF8EEA00F7E6E5 /* Services */,
+				81C28EFC2DEF942B00F7E6E5 /* Utils */,
 				81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */,
-				81C28EA32DEF888600F7E6E5 /* ContentView.swift */,
 				81C28EA52DEF888800F7E6E5 /* Assets.xcassets */,
 				81C28EA72DEF888800F7E6E5 /* Preview Content */,
 			);
@@ -125,6 +139,47 @@
 				81C28EBE2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift */,
 			);
 			path = SpaceFUITests;
+			sourceTree = "<group>";
+		};
+		81C28EEE2DEF8E2600F7E6E5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EEF2DEF8E4800F7E6E5 /* Article.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		81C28EF12DEF8E7B00F7E6E5 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		81C28EF22DEF8E8300F7E6E5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */,
+				81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		81C28EF92DEF8EEA00F7E6E5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		81C28EFC2DEF942B00F7E6E5 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EFD2DEF943C00F7E6E5 /* AppError.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -257,8 +312,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81C28EA42DEF888600F7E6E5 /* ContentView.swift in Sources */,
+				81C28EF52DEF8EAE00F7E6E5 /* ArticleDetailView.swift in Sources */,
+				81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */,
+				81C28EFB2DEF8EFB00F7E6E5 /* ArticleService.swift in Sources */,
+				81C28EF62DEF8EAE00F7E6E5 /* ArticleListView.swift in Sources */,
 				81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */,
+				81C28EF82DEF8EB600F7E6E5 /* ArticleListViewModel.swift in Sources */,
+				81C28EFE2DEF943C00F7E6E5 /* AppError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
