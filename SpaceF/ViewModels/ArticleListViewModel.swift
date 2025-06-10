@@ -1,3 +1,10 @@
+//
+//  ArticleListViewModel.swift
+//  SpaceF
+//
+//  Created by Mariano Perugini on 04/06/2025.
+//
+
 import Foundation
 import SwiftUI
 
@@ -10,46 +17,67 @@ class ArticleListViewModel: ObservableObject {
     
     private let articleService = ArticleService()
     private let logger = AppLogger.shared
-    
-    // Cache para mantener los artículos
-    private var articleCache: [Article] = []
+    private var currentTask: Task<Void, Never>?
     
     init() {
-        // Cargar el estado guardado si existe
+        // Iniciar la carga de datos inmediatamente
+        Task {
+            await loadInitialData()
+        }
+    }
+    
+    private func loadInitialData() async {
+        // Primero intentamos cargar el estado guardado
         if let savedArticles = UserDefaults.standard.data(forKey: "savedArticles"),
            let decodedArticles = try? JSONDecoder().decode([Article].self, from: savedArticles) {
             self.articles = decodedArticles
-            self.articleCache = decodedArticles
         }
         
         if let savedSearchText = UserDefaults.standard.string(forKey: "savedSearchText") {
             self.searchText = savedSearchText
         }
+        
+        // Si no hay artículos guardados o son muy antiguos, hacemos fetch
+        if articles.isEmpty {
+            await fetchArticles()
+        }
     }
     
     func fetchArticles() async {
-        isLoading = true
-        errorMessage = nil
+        // Cancelar cualquier tarea anterior
+        currentTask?.cancel()
         
-        do {
-            let response = try await articleService.fetchArticles(searchQuery: searchText.isEmpty ? nil : searchText)
-            articles = response.results
-            articleCache = response.results
+        // Crear nueva tarea
+        currentTask = Task {
+            isLoading = true
+            errorMessage = nil
             
-            // Guardar el estado
-            saveState()
+            do {
+                let response = try await articleService.fetchArticles(searchQuery: searchText.isEmpty ? nil : searchText)
+                
+                // Verificar si la tarea fue cancelada
+                if Task.isCancelled { return }
+                
+                articles = response.results
+                saveState()
+                logger.info("Artículos cargados exitosamente: \(articles.count)")
+            } catch let error as AppError {
+                if !Task.isCancelled {
+                    errorMessage = error.localizedDescription
+                    logger.error(error)
+                }
+            } catch {
+                if !Task.isCancelled {
+                    let unexpectedError = AppError.unexpected(error.localizedDescription)
+                    errorMessage = unexpectedError.localizedDescription
+                    logger.error(unexpectedError)
+                }
+            }
             
-            logger.info("Artículos cargados exitosamente: \(articles.count)")
-        } catch let error as AppError {
-            errorMessage = error.localizedDescription
-            logger.error(error)
-        } catch {
-            let unexpectedError = AppError.unexpected(error.localizedDescription)
-            errorMessage = unexpectedError.localizedDescription
-            logger.error(unexpectedError)
+            if !Task.isCancelled {
+                isLoading = false
+            }
         }
-        
-        isLoading = false
     }
     
     func searchArticles() {
@@ -69,7 +97,6 @@ class ArticleListViewModel: ObservableObject {
         }
     }
     
-    // Guardar el estado actual
     private func saveState() {
         if let encodedArticles = try? JSONEncoder().encode(articles) {
             UserDefaults.standard.set(encodedArticles, forKey: "savedArticles")
@@ -77,16 +104,9 @@ class ArticleListViewModel: ObservableObject {
         UserDefaults.standard.set(searchText, forKey: "savedSearchText")
     }
     
-    // Restaurar el estado
     func restoreState() {
-        if let savedArticles = UserDefaults.standard.data(forKey: "savedArticles"),
-           let decodedArticles = try? JSONDecoder().decode([Article].self, from: savedArticles) {
-            self.articles = decodedArticles
-            self.articleCache = decodedArticles
-        }
-        
-        if let savedSearchText = UserDefaults.standard.string(forKey: "savedSearchText") {
-            self.searchText = savedSearchText
+        Task {
+            await loadInitialData()
         }
     }
-} 
+}
