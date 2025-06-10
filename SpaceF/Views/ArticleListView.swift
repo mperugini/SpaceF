@@ -20,6 +20,16 @@ struct ArticleListView: View {
                 ScrollView {
                     LazyVStack(spacing: 16) {
                         contentBasedOnState
+                        
+                        if viewModel.morePagesAbailability() && !viewModel.isLoading {
+                            ProgressView()
+                                .frame(maxWidth: .infinity)
+                                .onAppear {
+                                    Task {
+                                        await viewModel.loadMoreArticles()
+                                    }
+                                }
+                        }
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 8)

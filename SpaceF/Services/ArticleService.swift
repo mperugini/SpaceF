@@ -19,13 +19,20 @@ class ArticleService {
         self.session = URLSession(configuration: config)
     }
     
-    func fetchArticles(searchQuery: String? = nil) async throws -> ArticleResponse {
-        var urlString = "\(baseURL)/articles"
+    func fetchArticles(searchQuery: String? = nil, limit: Int = 10, offset: Int = 0) async throws -> ArticleResponse {
+        var components = URLComponents(string: "\(baseURL)/articles")
+        var queryItems = [
+            URLQueryItem(name: "limit", value: String(limit)),
+            URLQueryItem(name: "offset", value: String(offset))
+        ]
+        
         if let query = searchQuery, !query.isEmpty {
-            urlString += "?search=\(query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "")"
+            queryItems.append(URLQueryItem(name: "search", value: query))
         }
         
-        guard let url = URL(string: urlString) else {
+        components?.queryItems = queryItems
+        
+        guard let url = components?.url else {
             let error = AppError.network(.invalidURL)
             logger.error(error)
             throw error

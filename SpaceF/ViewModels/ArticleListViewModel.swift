@@ -18,6 +18,9 @@ class ArticleListViewModel: ObservableObject {
     private let articleService = ArticleService()
     private let logger = AppLogger.shared
     private var currentTask: Task<Void, Never>?
+    private var currentOffset = 0
+    private let limit = 10
+    private var hasMorePages = true
     
     init() {
         // Iniciar la carga de datos inmediatamente
@@ -53,12 +56,23 @@ class ArticleListViewModel: ObservableObject {
             errorMessage = nil
             
             do {
-                let response = try await articleService.fetchArticles(searchQuery: searchText.isEmpty ? nil : searchText)
+                let response = try await articleService.fetchArticles(
+                    searchQuery: searchText.isEmpty ? nil : searchText,
+                    limit: limit,
+                    offset: currentOffset
+                )
                 
                 // Verificar si la tarea fue cancelada
                 if Task.isCancelled { return }
                 
-                articles = response.results
+                if currentOffset == 0 {
+                    articles = response.results
+                } else {
+                    articles.append(contentsOf: response.results)
+                }
+                
+                hasMorePages = response.next != nil
+                currentOffset += response.results.count
                 saveState()
                 logger.info("Artículos cargados exitosamente: \(articles.count)")
             } catch let error as AppError {
@@ -80,12 +94,23 @@ class ArticleListViewModel: ObservableObject {
         }
     }
     
+    func morePagesAbailability() -> Bool {
+        return hasMorePages
+    }
+    
+    func loadMoreArticles() async {
+        guard !isLoading && hasMorePages else { return }
+        await fetchArticles()
+    }
+    
     func searchArticles() {
         guard !searchText.isEmpty else {
             errorMessage = AppError.validation(.invalidInput("Búsqueda")).localizedDescription
             return
         }
         
+        currentOffset = 0
+        hasMorePages = true
         Task {
             await fetchArticles()
         }
