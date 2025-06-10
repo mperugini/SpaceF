@@ -27,8 +27,9 @@ struct ArticleDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    // Hero Image
+                    
                     if let imageUrl = article.imageUrl {
+                        
                         AsyncImage(url: URL(string: imageUrl)) { phase in
                             switch phase {
                             case .success(let image):
@@ -38,37 +39,18 @@ struct ArticleDetailView: View {
                                     .frame(width: geometry.size.width, height: 300)
                                     .clipped()
                             case .failure(_):
-                                Rectangle()
-                                    .fill(Color(.systemGray5))
-                                    .frame(width: geometry.size.width, height: 300)
-                                    .overlay(
-                                        VStack(spacing: 8) {
-                                            Image(systemName: "photo")
-                                                .font(.system(size: 40))
-                                                .foregroundColor(.gray)
-                                            Text("Imagen no disponible")
-                                                .font(.caption)
-                                                .foregroundColor(.gray)
-                                        }
-                                    )
+                                ImagePlaceholder(isError: true)
                             case .empty:
-                                Rectangle()
-                                    .fill(Color(.systemGray6))
-                                    .frame(width: geometry.size.width, height: 300)
-                                    .overlay(
-                                        ProgressView()
-                                            .scaleEffect(1.2)
-                                    )
+                                ImagePlaceholder(isError: false)
+                               
                             @unknown default:
-                                Rectangle()
-                                    .fill(Color(.systemGray5))
-                                    .frame(width: geometry.size.width, height: 300)
+                                ImagePlaceholder(isError: true)
                             }
                         }
                         .matchedGeometryEffect(id: "image_\(article.id)", in: imageTransition)
                     }
                     
-                    // Content
+                    // Contenido del articulo
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 12) {
                             Text(article.title)

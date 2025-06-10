@@ -17,14 +17,30 @@ struct ImagePlaceholder: View {
             .overlay(
                 VStack(spacing: 8) {
                     if isError {
+                        
+                        Rectangle()
+                            .fill(Color(.systemGray5))
+                            .overlay(
+                                VStack(spacing: 8) {
+                                    Image(systemName: "photo")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.gray)
+                                    Text("Imagen no disponible")
+                                        .font(.caption)
+                                        .foregroundColor(.gray)
+                                }
+                            )
+                        /*
                         Image(systemName: "photo")
                             .font(.system(size: 40))
                             .foregroundColor(.gray)
                         Text("Imagen no disponible")
                             .font(.caption)
                             .foregroundColor(.gray)
+                         */
                     } else {
                         ProgressView()
+                            .controlSize(.extraLarge)
                             .scaleEffect(1.2)
                     }
                 }

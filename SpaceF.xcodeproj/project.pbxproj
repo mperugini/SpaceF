@@ -91,6 +91,27 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		815E326B2DF89765003E5117 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				81C28EF12DEF8E7B00F7E6E5 /* ViewModels */,
+				81C28EF22DEF8E8300F7E6E5 /* Views */,
+				815E326C2DF8A81E003E5117 /* Components */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		815E326C2DF8A81E003E5117 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				815E32652DF0CB5A003E5117 /* SkeletonView.swift */,
+				815E32612DF0C3B4003E5117 /* ErrorView.swift */,
+				815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */,
+				815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		81C28E952DEF888600F7E6E5 = {
 			isa = PBXGroup;
 			children = (
@@ -114,9 +135,8 @@
 		81C28EA02DEF888600F7E6E5 /* SpaceF */ = {
 			isa = PBXGroup;
 			children = (
+				815E326B2DF89765003E5117 /* Presentation */,
 				81C28EEE2DEF8E2600F7E6E5 /* Models */,
-				81C28EF22DEF8E8300F7E6E5 /* Views */,
-				81C28EF12DEF8E7B00F7E6E5 /* ViewModels */,
 				81C28EF92DEF8EEA00F7E6E5 /* Services */,
 				81C28EFC2DEF942B00F7E6E5 /* Utils */,
 				81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */,
@@ -173,10 +193,6 @@
 				81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */,
 				81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */,
 				815E325F2DF0C364003E5117 /* ArticleCardView.swift */,
-				815E32612DF0C3B4003E5117 /* ErrorView.swift */,
-				815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */,
-				815E32652DF0CB5A003E5117 /* SkeletonView.swift */,
-				815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
