@@ -12,7 +12,6 @@ struct ArticleListView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var scrollPosition: String?
     @State private var hasInitiallyLoaded = false
-    @Namespace private var imageTransition
     
     var body: some View {
         NavigationView {
@@ -136,8 +135,8 @@ struct ArticleListView: View {
     @ViewBuilder
     private var articlesContent: some View {
         ForEach(viewModel.articles) { article in
-            NavigationLink(destination: ArticleDetailView(article: article, imageTransition: imageTransition)) {
-                ArticleCardView(article: article, imageTransition: imageTransition)
+            NavigationLink(destination: ArticleDetailView(article: article)) {
+                ArticleCardView(article: article)
             }
             .buttonStyle(PlainButtonStyle())
             .id(article.id)

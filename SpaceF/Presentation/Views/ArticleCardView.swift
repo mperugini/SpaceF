@@ -9,8 +9,6 @@ import SwiftUI
 
 struct ArticleCardView: View {
     let article: Article
-    let imageTransition: Namespace.ID
-    @State private var imageLoaded = false
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -32,9 +30,6 @@ struct ArticleCardView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(height: 220)
                             .clipped()
-                            .onAppear {
-                                imageLoaded = true
-                            }
                     case .failure(_):
                         ImagePlaceholder(isError: true)
                     case .empty:
@@ -43,8 +38,6 @@ struct ArticleCardView: View {
                         ImagePlaceholder(isError: true)
                     }
                 }
-                .animation(.smooth(extraBounce: 0.1), value: imageLoaded)
-                .matchedGeometryEffect(id: "image_\(article.id)", in: imageTransition)
                 .accessibilityLabel("Imagen del artículo: \(article.title)")
             }
             

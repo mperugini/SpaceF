@@ -9,7 +9,6 @@ import SwiftUI
 
 struct ArticleDetailView: View {
     let article: Article
-    let imageTransition: Namespace.ID
     @Environment(\.openURL) private var openURL
     @Environment(\.dismiss) private var dismiss
     @State private var scrollOffset: CGFloat = 0
@@ -47,7 +46,6 @@ struct ArticleDetailView: View {
                                 ImagePlaceholder(isError: true)
                             }
                         }
-                        .matchedGeometryEffect(id: "image_\(article.id)", in: imageTransition)
                     }
                     
                     // Contenido del articulo
