@@ -28,17 +28,16 @@
 		815E32902DF8BE5C003E5117 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E328F2DF8BE5C003E5117 /* AppCoordinator.swift */; };
 		815E32922DF8BE92003E5117 /* RootAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32912DF8BE92003E5117 /* RootAppView.swift */; };
 		815E32942DF8BF0D003E5117 /* SplashComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32932DF8BF0D003E5117 /* SplashComponents.swift */; };
+		815E32962DF8C341003E5117 /* URLSecurity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32952DF8C341003E5117 /* URLSecurity.swift */; };
 		81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */; };
 		81C28EA62DEF888800F7E6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA52DEF888800F7E6E5 /* Assets.xcassets */; };
 		81C28EA92DEF888800F7E6E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */; };
-		81C28EB32DEF888800F7E6E5 /* SpaceFTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EB22DEF888800F7E6E5 /* SpaceFTests.swift */; };
 		81C28EBD2DEF888800F7E6E5 /* SpaceFUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EBC2DEF888800F7E6E5 /* SpaceFUITests.swift */; };
 		81C28EBF2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EBE2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift */; };
 		81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EEF2DEF8E4800F7E6E5 /* Article.swift */; };
 		81C28EF52DEF8EAE00F7E6E5 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */; };
 		81C28EF62DEF8EAE00F7E6E5 /* ArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */; };
 		81C28EF82DEF8EB600F7E6E5 /* ArticleListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */; };
-		81C28EFB2DEF8EFB00F7E6E5 /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */; };
 		81C28EFE2DEF943C00F7E6E5 /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EFD2DEF943C00F7E6E5 /* AppError.swift */; };
 /* End PBXBuildFile section */
 
@@ -81,12 +80,12 @@
 		815E328F2DF8BE5C003E5117 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		815E32912DF8BE92003E5117 /* RootAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAppView.swift; sourceTree = "<group>"; };
 		815E32932DF8BF0D003E5117 /* SplashComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashComponents.swift; sourceTree = "<group>"; };
+		815E32952DF8C341003E5117 /* URLSecurity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSecurity.swift; sourceTree = "<group>"; };
 		81C28E9E2DEF888600F7E6E5 /* SpaceF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFApp.swift; sourceTree = "<group>"; };
 		81C28EA52DEF888800F7E6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		81C28EAE2DEF888800F7E6E5 /* SpaceFTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceFTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		81C28EB22DEF888800F7E6E5 /* SpaceFTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFTests.swift; sourceTree = "<group>"; };
 		81C28EB82DEF888800F7E6E5 /* SpaceFUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SpaceFUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EBC2DEF888800F7E6E5 /* SpaceFUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFUITests.swift; sourceTree = "<group>"; };
 		81C28EBE2DEF888800F7E6E5 /* SpaceFUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFUITestsLaunchTests.swift; sourceTree = "<group>"; };
@@ -94,7 +93,6 @@
 		81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
 		81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListView.swift; sourceTree = "<group>"; };
 		81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleListViewModel.swift; sourceTree = "<group>"; };
-		81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		81C28EFD2DEF943C00F7E6E5 /* AppError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -232,7 +230,6 @@
 				815E326B2DF89765003E5117 /* Presentation */,
 				815E326D2DF8AC02003E5117 /* Domain */,
 				81C28EEE2DEF8E2600F7E6E5 /* Models */,
-				81C28EF92DEF8EEA00F7E6E5 /* Services */,
 				81C28EFC2DEF942B00F7E6E5 /* Utils */,
 				81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */,
 				81C28EA52DEF888800F7E6E5 /* Assets.xcassets */,
@@ -253,7 +250,6 @@
 			isa = PBXGroup;
 			children = (
 				815E32852DF8B2C2003E5117 /* Mocks */,
-				81C28EB22DEF888800F7E6E5 /* SpaceFTests.swift */,
 				815E32832DF8B2A8003E5117 /* ViewModelTests.swift */,
 				815E32882DF8B35F003E5117 /* UseCaseTests.swift */,
 				815E328B2DF8B38D003E5117 /* RepositoryTests.swift */,
@@ -299,20 +295,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
-		81C28EF92DEF8EEA00F7E6E5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				81C28EFA2DEF8EFB00F7E6E5 /* ArticleService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
 		81C28EFC2DEF942B00F7E6E5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				81C28EFD2DEF943C00F7E6E5 /* AppError.swift */,
 				815E327F2DF8B157003E5117 /* AppConfig.swift */,
 				815E32812DF8B1A5003E5117 /* DependencyContainer.swift */,
+				815E32952DF8C341003E5117 /* URLSecurity.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -453,7 +442,7 @@
 				815E32602DF0C364003E5117 /* ArticleCardView.swift in Sources */,
 				81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */,
 				815E32682DF0CB76003E5117 /* LoadingIndicatorView.swift in Sources */,
-				81C28EFB2DEF8EFB00F7E6E5 /* ArticleService.swift in Sources */,
+				815E32962DF8C341003E5117 /* URLSecurity.swift in Sources */,
 				815E32752DF8AFEE003E5117 /* SearchArticlesUseCase.swift in Sources */,
 				815E32822DF8B1A5003E5117 /* DependencyContainer.swift in Sources */,
 				815E32922DF8BE92003E5117 /* RootAppView.swift in Sources */,
@@ -482,7 +471,6 @@
 				815E32892DF8B35F003E5117 /* UseCaseTests.swift in Sources */,
 				815E32842DF8B2A8003E5117 /* ViewModelTests.swift in Sources */,
 				815E328C2DF8B38D003E5117 /* RepositoryTests.swift in Sources */,
-				81C28EB32DEF888800F7E6E5 /* SpaceFTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -641,6 +629,8 @@
 				DEVELOPMENT_TEAM = X6FBZPMB3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Space News";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -670,6 +660,8 @@
 				DEVELOPMENT_TEAM = X6FBZPMB3Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Space News";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.news";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

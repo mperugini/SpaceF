@@ -41,12 +41,12 @@ struct ArticleListView: View {
                     }
                 }
             }
-            .navigationTitle("Space News")
+            .navigationTitle("Space Flight News")
             .navigationBarTitleDisplayMode(.large)
             .searchable(
                 text: $viewModel.searchText,
                 placement: .navigationBarDrawer(displayMode: .always),
-                prompt: "Buscar artículos..."
+                prompt: "Buscar Articulos ..."
             )
             .onSubmit(of: .search) {
                 Task {
@@ -119,7 +119,7 @@ struct ArticleListView: View {
         ContentUnavailableView(
             "No se encontraron artículos",
             systemImage: "newspaper",
-            description: Text("Intenta buscar algo diferente o regresa más tarde")
+            description: Text("Intenta buscar algo diferente o regresa más tarde") //ToDo: i18n
         )
     }
     
@@ -134,7 +134,7 @@ struct ArticleListView: View {
             .buttonStyle(PlainButtonStyle())
             .id(article.id)
             .onAppear {
-                // Scroll infinito: cargar más cuando llegamos cerca del final
+                // Scroll infinito: carga mas articulos cuando llegamos cerca del final
                 if index == viewModel.articles.count - 2 && !viewModel.isLoading {
                     Task {
                         await viewModel.loadMoreArticles()

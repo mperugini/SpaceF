@@ -20,6 +20,10 @@ struct Article: Codable, Identifiable {
         case publishedAt = "published_at"
         case updatedAt = "updated_at"
     }
+    
+    var secureImageURL: URL? {
+           return ImageURLValidator.validateAndSecure(imageUrl)
+       }
 }
 
 struct ArticleResponse: Codable {

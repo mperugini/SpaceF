@@ -44,20 +44,12 @@ class AppCoordinator: ObservableObject {
     }
     
     private func performInitializationTasks() async {
-        logger.info("Ejecutando tareas de inicialización...")
-        
-        // Aquí puedes agregar tareas de inicialización como:
-        // - Verificar conectividad
-        // - Cargar configuraciones
-        // - Inicializar analytics
-        // - Precarga de datos críticos
-        
+        logger.info("tareas de inicialización...")
         
         do {
-            // Ejemplo: Precargar algunos datos
-            await preloadEssentialData()
+        
+            await preloadEssentialData() // such as Firebase sdk init, remote logger, etc
             
-            // Ejemplo: Inicializar servicios
             await initializeServices()
             logger.info("Inicialización completada exitosamente")
         }
@@ -70,18 +62,16 @@ class AppCoordinator: ObservableObject {
     }
     
     private func initializeServices() async {
-        // Simular inicialización de servicios
+        // Simula inicializacion de servicios
         try? await Task.sleep(nanoseconds: 300_000_000) // 0.3 seconds
         logger.debug("Servicios inicializados")
     }
     
     func handleAppBecomeActive() {
-        // Manejar cuando la app se vuelve activa
         logger.info("App se volvió activa")
     }
     
     func handleAppResignActive() {
-        // Manejar cuando la app pierde el foco
         logger.info("App perdió el foco")
     }
 }

@@ -27,9 +27,9 @@ struct ArticleDetailView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
                     
-                    if let imageUrl = article.imageUrl {
+                    if let imageUrl = article.secureImageURL {
                         
-                        AsyncImage(url: URL(string: imageUrl)) { phase in
+                        AsyncImage(url: imageUrl) { phase in
                             switch phase {
                             case .success(let image):
                                 image
@@ -48,7 +48,7 @@ struct ArticleDetailView: View {
                         }
                     }
                     
-                    // Contenido del articulo
+                    // content del articulo
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 12) {
                             Text(article.title)

@@ -88,7 +88,7 @@ class ArticleListViewModel: ObservableObject {
     }
     
     func loadMoreArticles() async {
-        // No cargar más si estamos en modo búsqueda, ya cargando, o no hay más páginas
+        // No cargar mas si estamos en modo busqueda, ya cargando, o no hay mas paginas
         guard !isSearchMode && !isLoading && hasMorePages else { return }
         
         isLoading = true
