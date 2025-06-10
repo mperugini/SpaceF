@@ -12,6 +12,7 @@ struct ArticleListView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var scrollPosition: String?
     @State private var hasInitiallyLoaded = false
+    @Namespace private var imageTransition
     
     var body: some View {
         NavigationView {
@@ -19,22 +20,12 @@ struct ArticleListView: View {
                 ScrollView {
                     LazyVStack(spacing: 16) {
                         contentBasedOnState
-                        
-                        if viewModel.morePagesAbailability() && !viewModel.isLoading {
-                            ProgressView()
-                                .frame(maxWidth: .infinity)
-                                .onAppear {
-                                    Task {
-                                        await viewModel.loadMoreArticles()
-                                    }
-                                }
-                        }
                     }
                     .padding(.horizontal, 16)
                     .padding(.top, 8)
                 }
                 .refreshable {
-                    await viewModel.fetchArticles()
+                    await viewModel.refreshArticles()
                 }
                 .onChange(of: scrollPosition) { oldValue, newValue in
                     if let position = newValue,
@@ -134,12 +125,22 @@ struct ArticleListView: View {
     
     @ViewBuilder
     private var articlesContent: some View {
-        ForEach(viewModel.articles) { article in
-            NavigationLink(destination: ArticleDetailView(article: article)) {
+        ForEach(Array(viewModel.articles.enumerated()), id: \.element.id) { index, article in
+            NavigationLink {
+                ArticleDetailView(article: article)
+            } label: {
                 ArticleCardView(article: article)
             }
             .buttonStyle(PlainButtonStyle())
             .id(article.id)
+            .onAppear {
+                // Scroll infinito: cargar más cuando llegamos cerca del final
+                if index == viewModel.articles.count - 2 && !viewModel.isLoading {
+                    Task {
+                        await viewModel.loadMoreArticles()
+                    }
+                }
+            }
         }
         
         if viewModel.isLoading && !viewModel.articles.isEmpty {

@@ -12,6 +12,22 @@
 		815E32642DF0CB3E003E5117 /* ImagePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */; };
 		815E32662DF0CB5A003E5117 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32652DF0CB5A003E5117 /* SkeletonView.swift */; };
 		815E32682DF0CB76003E5117 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */; };
+		815E32712DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32702DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift */; };
+		815E32732DF8AFB3003E5117 /* FetchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32722DF8AFB3003E5117 /* FetchArticlesUseCase.swift */; };
+		815E32752DF8AFEE003E5117 /* SearchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32742DF8AFEE003E5117 /* SearchArticlesUseCase.swift */; };
+		815E32772DF8B05F003E5117 /* ArticleRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32762DF8B05F003E5117 /* ArticleRepository.swift */; };
+		815E327C2DF8B0F5003E5117 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E327B2DF8B0F5003E5117 /* RemoteDataSource.swift */; };
+		815E327E2DF8B121003E5117 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E327D2DF8B121003E5117 /* LocalDataSource.swift */; };
+		815E32802DF8B157003E5117 /* AppConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E327F2DF8B157003E5117 /* AppConfig.swift */; };
+		815E32822DF8B1A5003E5117 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32812DF8B1A5003E5117 /* DependencyContainer.swift */; };
+		815E32842DF8B2A8003E5117 /* ViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32832DF8B2A8003E5117 /* ViewModelTests.swift */; };
+		815E32872DF8B2EF003E5117 /* MockDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32862DF8B2EF003E5117 /* MockDependencies.swift */; };
+		815E32892DF8B35F003E5117 /* UseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32882DF8B35F003E5117 /* UseCaseTests.swift */; };
+		815E328C2DF8B38D003E5117 /* RepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E328B2DF8B38D003E5117 /* RepositoryTests.swift */; };
+		815E328E2DF8BE27003E5117 /* SplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E328D2DF8BE27003E5117 /* SplashScreenView.swift */; };
+		815E32902DF8BE5C003E5117 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E328F2DF8BE5C003E5117 /* AppCoordinator.swift */; };
+		815E32922DF8BE92003E5117 /* RootAppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32912DF8BE92003E5117 /* RootAppView.swift */; };
+		815E32942DF8BF0D003E5117 /* SplashComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32932DF8BF0D003E5117 /* SplashComponents.swift */; };
 		81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */; };
 		81C28EA62DEF888800F7E6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA52DEF888800F7E6E5 /* Assets.xcassets */; };
 		81C28EA92DEF888800F7E6E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */; };
@@ -49,6 +65,22 @@
 		815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaceholder.swift; sourceTree = "<group>"; };
 		815E32652DF0CB5A003E5117 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
 		815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		815E32702DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepositoryProtocol.swift; sourceTree = "<group>"; };
+		815E32722DF8AFB3003E5117 /* FetchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchArticlesUseCase.swift; sourceTree = "<group>"; };
+		815E32742DF8AFEE003E5117 /* SearchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticlesUseCase.swift; sourceTree = "<group>"; };
+		815E32762DF8B05F003E5117 /* ArticleRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepository.swift; sourceTree = "<group>"; };
+		815E327B2DF8B0F5003E5117 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
+		815E327D2DF8B121003E5117 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataSource.swift; sourceTree = "<group>"; };
+		815E327F2DF8B157003E5117 /* AppConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConfig.swift; sourceTree = "<group>"; };
+		815E32812DF8B1A5003E5117 /* DependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
+		815E32832DF8B2A8003E5117 /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
+		815E32862DF8B2EF003E5117 /* MockDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDependencies.swift; sourceTree = "<group>"; };
+		815E32882DF8B35F003E5117 /* UseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UseCaseTests.swift; sourceTree = "<group>"; };
+		815E328B2DF8B38D003E5117 /* RepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTests.swift; sourceTree = "<group>"; };
+		815E328D2DF8BE27003E5117 /* SplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreenView.swift; sourceTree = "<group>"; };
+		815E328F2DF8BE5C003E5117 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		815E32912DF8BE92003E5117 /* RootAppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootAppView.swift; sourceTree = "<group>"; };
+		815E32932DF8BF0D003E5117 /* SplashComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashComponents.swift; sourceTree = "<group>"; };
 		81C28E9E2DEF888600F7E6E5 /* SpaceF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFApp.swift; sourceTree = "<group>"; };
 		81C28EA52DEF888800F7E6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -108,8 +140,70 @@
 				815E32612DF0C3B4003E5117 /* ErrorView.swift */,
 				815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */,
 				815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */,
+				815E32932DF8BF0D003E5117 /* SplashComponents.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		815E326D2DF8AC02003E5117 /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				815E32782DF8B0C2003E5117 /* Data */,
+				815E326E2DF8AC0A003E5117 /* Repositories */,
+				815E326F2DF8AC14003E5117 /* UseCases */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		815E326E2DF8AC0A003E5117 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				815E32702DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		815E326F2DF8AC14003E5117 /* UseCases */ = {
+			isa = PBXGroup;
+			children = (
+				815E32722DF8AFB3003E5117 /* FetchArticlesUseCase.swift */,
+				815E32742DF8AFEE003E5117 /* SearchArticlesUseCase.swift */,
+			);
+			path = UseCases;
+			sourceTree = "<group>";
+		};
+		815E32782DF8B0C2003E5117 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				815E327A2DF8B0E0003E5117 /* DataSources */,
+				815E32792DF8B0CD003E5117 /* Repositories */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		815E32792DF8B0CD003E5117 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				815E32762DF8B05F003E5117 /* ArticleRepository.swift */,
+			);
+			path = Repositories;
+			sourceTree = "<group>";
+		};
+		815E327A2DF8B0E0003E5117 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				815E327B2DF8B0F5003E5117 /* RemoteDataSource.swift */,
+				815E327D2DF8B121003E5117 /* LocalDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		815E32852DF8B2C2003E5117 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				815E32862DF8B2EF003E5117 /* MockDependencies.swift */,
+			);
+			path = Mocks;
 			sourceTree = "<group>";
 		};
 		81C28E952DEF888600F7E6E5 = {
@@ -136,6 +230,7 @@
 			isa = PBXGroup;
 			children = (
 				815E326B2DF89765003E5117 /* Presentation */,
+				815E326D2DF8AC02003E5117 /* Domain */,
 				81C28EEE2DEF8E2600F7E6E5 /* Models */,
 				81C28EF92DEF8EEA00F7E6E5 /* Services */,
 				81C28EFC2DEF942B00F7E6E5 /* Utils */,
@@ -157,7 +252,11 @@
 		81C28EB12DEF888800F7E6E5 /* SpaceFTests */ = {
 			isa = PBXGroup;
 			children = (
+				815E32852DF8B2C2003E5117 /* Mocks */,
 				81C28EB22DEF888800F7E6E5 /* SpaceFTests.swift */,
+				815E32832DF8B2A8003E5117 /* ViewModelTests.swift */,
+				815E32882DF8B35F003E5117 /* UseCaseTests.swift */,
+				815E328B2DF8B38D003E5117 /* RepositoryTests.swift */,
 			);
 			path = SpaceFTests;
 			sourceTree = "<group>";
@@ -183,6 +282,7 @@
 			isa = PBXGroup;
 			children = (
 				81C28EF72DEF8EB600F7E6E5 /* ArticleListViewModel.swift */,
+				815E328F2DF8BE5C003E5117 /* AppCoordinator.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -193,6 +293,8 @@
 				81C28EF32DEF8EAE00F7E6E5 /* ArticleDetailView.swift */,
 				81C28EF42DEF8EAE00F7E6E5 /* ArticleListView.swift */,
 				815E325F2DF0C364003E5117 /* ArticleCardView.swift */,
+				815E328D2DF8BE27003E5117 /* SplashScreenView.swift */,
+				815E32912DF8BE92003E5117 /* RootAppView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -209,6 +311,8 @@
 			isa = PBXGroup;
 			children = (
 				81C28EFD2DEF943C00F7E6E5 /* AppError.swift */,
+				815E327F2DF8B157003E5117 /* AppConfig.swift */,
+				815E32812DF8B1A5003E5117 /* DependencyContainer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -343,17 +447,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815E32902DF8BE5C003E5117 /* AppCoordinator.swift in Sources */,
 				81C28EF52DEF8EAE00F7E6E5 /* ArticleDetailView.swift in Sources */,
+				815E32942DF8BF0D003E5117 /* SplashComponents.swift in Sources */,
 				815E32602DF0C364003E5117 /* ArticleCardView.swift in Sources */,
 				81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */,
 				815E32682DF0CB76003E5117 /* LoadingIndicatorView.swift in Sources */,
 				81C28EFB2DEF8EFB00F7E6E5 /* ArticleService.swift in Sources */,
+				815E32752DF8AFEE003E5117 /* SearchArticlesUseCase.swift in Sources */,
+				815E32822DF8B1A5003E5117 /* DependencyContainer.swift in Sources */,
+				815E32922DF8BE92003E5117 /* RootAppView.swift in Sources */,
+				815E327E2DF8B121003E5117 /* LocalDataSource.swift in Sources */,
+				815E32802DF8B157003E5117 /* AppConfig.swift in Sources */,
+				815E32772DF8B05F003E5117 /* ArticleRepository.swift in Sources */,
 				81C28EF62DEF8EAE00F7E6E5 /* ArticleListView.swift in Sources */,
 				815E32662DF0CB5A003E5117 /* SkeletonView.swift in Sources */,
+				815E32732DF8AFB3003E5117 /* FetchArticlesUseCase.swift in Sources */,
+				815E327C2DF8B0F5003E5117 /* RemoteDataSource.swift in Sources */,
+				815E328E2DF8BE27003E5117 /* SplashScreenView.swift in Sources */,
 				81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */,
 				81C28EF82DEF8EB600F7E6E5 /* ArticleListViewModel.swift in Sources */,
 				815E32642DF0CB3E003E5117 /* ImagePlaceholder.swift in Sources */,
 				815E32622DF0C3B4003E5117 /* ErrorView.swift in Sources */,
+				815E32712DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift in Sources */,
 				81C28EFE2DEF943C00F7E6E5 /* AppError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,6 +478,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				815E32872DF8B2EF003E5117 /* MockDependencies.swift in Sources */,
+				815E32892DF8B35F003E5117 /* UseCaseTests.swift in Sources */,
+				815E32842DF8B2A8003E5117 /* ViewModelTests.swift in Sources */,
+				815E328C2DF8B38D003E5117 /* RepositoryTests.swift in Sources */,
 				81C28EB32DEF888800F7E6E5 /* SpaceFTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

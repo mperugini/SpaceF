@@ -14,103 +14,121 @@ class ArticleListViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var searchText = ""
+    @Published var hasMorePages = true
     
-    private let articleService = ArticleService()
+    private let fetchArticlesUseCase: FetchArticlesUseCaseProtocol
+    private let searchArticlesUseCase: SearchArticlesUseCaseProtocol
+    private let localDataSource: LocalDataSourceProtocol
     private let logger = AppLogger.shared
-    private var currentTask: Task<Void, Never>?
+    
+    // Pagination state
     private var currentOffset = 0
-    private let limit = 10
-    private var hasMorePages = true
+    private let pageSize = AppConfig.defaultLimit
+    private var isSearchMode = false
     
-    init() {
-        // Iniciar la carga de datos inmediatamente
+    init(
+        fetchArticlesUseCase: FetchArticlesUseCaseProtocol = DependencyContainer.shared.resolve(),
+        searchArticlesUseCase: SearchArticlesUseCaseProtocol = DependencyContainer.shared.resolve(),
+        localDataSource: LocalDataSourceProtocol = DependencyContainer.shared.resolve()
+    ) {
+        self.fetchArticlesUseCase = fetchArticlesUseCase
+        self.searchArticlesUseCase = searchArticlesUseCase
+        self.localDataSource = localDataSource
+        
         Task {
-            await loadInitialData()
-        }
-    }
-    
-    private func loadInitialData() async {
-        // Primero intentamos cargar el estado guardado
-        if let savedArticles = UserDefaults.standard.data(forKey: "savedArticles"),
-           let decodedArticles = try? JSONDecoder().decode([Article].self, from: savedArticles) {
-            self.articles = decodedArticles
-        }
-        
-        if let savedSearchText = UserDefaults.standard.string(forKey: "savedSearchText") {
-            self.searchText = savedSearchText
-        }
-        
-        // Si no hay artículos guardados o son muy antiguos, hacemos fetch
-        if articles.isEmpty {
-            await fetchArticles()
+            await loadInitialState()
         }
     }
     
     func fetchArticles() async {
-        // Cancelar cualquier tarea anterior
-        currentTask?.cancel()
+        isLoading = true
+        errorMessage = nil
         
-        // Crear nueva tarea
-        currentTask = Task {
-            isLoading = true
-            errorMessage = nil
+        // Reset pagination for new search
+        currentOffset = 0
+        hasMorePages = true
+        isSearchMode = !searchText.isEmpty
+        
+        do {
+            let response: ArticleResponse
             
-            do {
-                let response = try await articleService.fetchArticles(
-                    searchQuery: searchText.isEmpty ? nil : searchText,
-                    limit: limit,
+            if searchText.isEmpty {
+                response = try await fetchArticlesUseCase.execute(
+                    searchQuery: nil,
+                    limit: pageSize,
                     offset: currentOffset
                 )
-                
-                // Verificar si la tarea fue cancelada
-                if Task.isCancelled { return }
-                
-                if currentOffset == 0 {
-                    articles = response.results
-                } else {
-                    articles.append(contentsOf: response.results)
-                }
-                
-                hasMorePages = response.next != nil
-                currentOffset += response.results.count
-                saveState()
-                logger.info("Artículos cargados exitosamente: \(articles.count)")
-            } catch let error as AppError {
-                if !Task.isCancelled {
-                    errorMessage = error.localizedDescription
-                    logger.error(error)
-                }
-            } catch {
-                if !Task.isCancelled {
-                    let unexpectedError = AppError.unexpected(error.localizedDescription)
-                    errorMessage = unexpectedError.localizedDescription
-                    logger.error(unexpectedError)
-                }
+            } else {
+                response = try await searchArticlesUseCase.execute(query: searchText)
             }
             
-            if !Task.isCancelled {
-                isLoading = false
+            articles = response.results
+            currentOffset = response.results.count
+            hasMorePages = response.next != nil
+            
+            // Save state in background
+            Task.detached { [weak self] in
+                guard let self = self else { return }
+                await self.localDataSource.saveArticles(response.results)
+                await self.localDataSource.saveSearchText(await self.searchText)
             }
+            
+            logger.info("Artículos cargados exitosamente: \(articles.count)")
+            
+        } catch let error as AppError {
+            errorMessage = error.localizedDescription
+            logger.error(error)
+        } catch {
+            let unexpectedError = AppError.unexpected(error.localizedDescription)
+            errorMessage = unexpectedError.localizedDescription
+            logger.error(unexpectedError)
         }
-    }
-    
-    func morePagesAbailability() -> Bool {
-        return hasMorePages
+        
+        isLoading = false
     }
     
     func loadMoreArticles() async {
-        guard !isLoading && hasMorePages else { return }
-        await fetchArticles()
+        // No cargar más si estamos en modo búsqueda, ya cargando, o no hay más páginas
+        guard !isSearchMode && !isLoading && hasMorePages else { return }
+        
+        isLoading = true
+        
+        do {
+            let response = try await fetchArticlesUseCase.execute(
+                searchQuery: nil,
+                limit: pageSize,
+                offset: currentOffset
+            )
+            
+            // Append new articles to existing ones
+            articles.append(contentsOf: response.results)
+            currentOffset += response.results.count
+            hasMorePages = response.next != nil
+            
+            logger.info("Más artículos cargados: \(response.results.count). Total: \(articles.count)")
+            
+        } catch let error as AppError {
+            errorMessage = error.localizedDescription
+            logger.error(error)
+        } catch {
+            let unexpectedError = AppError.unexpected(error.localizedDescription)
+            errorMessage = unexpectedError.localizedDescription
+            logger.error(unexpectedError)
+        }
+        
+        isLoading = false
     }
     
     func searchArticles() {
-        guard !searchText.isEmpty else {
+        guard !searchText.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty else {
             errorMessage = AppError.validation(.invalidInput("Búsqueda")).localizedDescription
             return
         }
         
+        // Reset pagination for search
         currentOffset = 0
         hasMorePages = true
+        
         Task {
             await fetchArticles()
         }
@@ -122,16 +140,31 @@ class ArticleListViewModel: ObservableObject {
         }
     }
     
-    private func saveState() {
-        if let encodedArticles = try? JSONEncoder().encode(articles) {
-            UserDefaults.standard.set(encodedArticles, forKey: "savedArticles")
-        }
-        UserDefaults.standard.set(searchText, forKey: "savedSearchText")
+    func refreshArticles() async {
+        // Reset pagination and fetch fresh data
+        currentOffset = 0
+        hasMorePages = true
+        await fetchArticles()
     }
     
-    func restoreState() {
+    func clearCache() {
         Task {
-            await loadInitialData()
+            await localDataSource.clearCache()
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    private func loadInitialState() async {
+        let cachedArticles = await localDataSource.getCachedArticles()
+        let cachedSearchText = await localDataSource.getCachedSearchText()
+        
+        articles = cachedArticles
+        searchText = cachedSearchText
+        
+        // If no cached articles, fetch from network
+        if cachedArticles.isEmpty {
+            await fetchArticles()
         }
     }
 }
