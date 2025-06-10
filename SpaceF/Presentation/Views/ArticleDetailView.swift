@@ -9,10 +9,10 @@ import SwiftUI
 
 struct ArticleDetailView: View {
     let article: Article
-    @Environment(\.openURL) private var openURL
     @Environment(\.dismiss) private var dismiss
     @State private var scrollOffset: CGFloat = 0
     @State private var showShareSheet = false
+    @State private var showSafariView = false
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -26,10 +26,9 @@ struct ArticleDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    
-                    if let imageUrl = article.secureImageURL {
-                        
-                        AsyncImage(url: imageUrl) { phase in
+                    // Hero Image con URL segura
+                    if let secureImageURL = article.secureImageURL {
+                        AsyncImage(url: secureImageURL) { phase in
                             switch phase {
                             case .success(let image):
                                 image
@@ -38,17 +37,36 @@ struct ArticleDetailView: View {
                                     .frame(width: geometry.size.width, height: 300)
                                     .clipped()
                             case .failure(_):
-                                ImagePlaceholder(isError: true)
+                                Rectangle()
+                                    .fill(Color(.systemGray5))
+                                    .frame(width: geometry.size.width, height: 300)
+                                    .overlay(
+                                        VStack(spacing: 8) {
+                                            Image(systemName: "photo")
+                                                .font(.system(size: 40))
+                                                .foregroundColor(.gray)
+                                            Text("Imagen no disponible")
+                                                .font(.caption)
+                                                .foregroundColor(.gray)
+                                        }
+                                    )
                             case .empty:
-                                ImagePlaceholder(isError: false)
-                               
+                                Rectangle()
+                                    .fill(Color(.systemGray6))
+                                    .frame(width: geometry.size.width, height: 300)
+                                    .overlay(
+                                        ProgressView()
+                                            .scaleEffect(1.2)
+                                    )
                             @unknown default:
-                                ImagePlaceholder(isError: true)
+                                Rectangle()
+                                    .fill(Color(.systemGray5))
+                                    .frame(width: geometry.size.width, height: 300)
                             }
                         }
                     }
                     
-                    // content del articulo
+                    // Content
                     VStack(alignment: .leading, spacing: 16) {
                         VStack(alignment: .leading, spacing: 12) {
                             Text(article.title)
@@ -74,9 +92,7 @@ struct ArticleDetailView: View {
                                 .lineSpacing(4)
                             
                             Button(action: {
-                                if let url = URL(string: article.url) {
-                                    openURL(url)
-                                }
+                                showSafariView = true
                             }) {
                                 HStack {
                                     Text("Leer artículo completo")
@@ -115,6 +131,11 @@ struct ArticleDetailView: View {
         .sheet(isPresented: $showShareSheet) {
             ShareSheet(activityItems: [article.url, article.title])
         }
+        .sheet(isPresented: $showSafariView) {
+            if let url = URL(string: article.url) {
+                SafariView(url: url, article: article, configuration: .spaceTheme)
+            }
+        }
         .background(Color(.systemGroupedBackground))
     }
     
@@ -148,7 +169,7 @@ struct ArticleDetailView: View {
             }
         }
         .padding(.horizontal, 20)
-        .padding(.top, 20)
+        .padding(.top, 50)
     }
     
     private var formattedDate: String {
