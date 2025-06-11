@@ -169,7 +169,7 @@ struct ArticleDetailView: View {
             }
         }
         .padding(.horizontal, 20)
-        .padding(.top, 50)
+        .padding(.top, 20)
     }
     
     private var formattedDate: String {

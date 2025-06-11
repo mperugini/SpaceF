@@ -36,7 +36,7 @@ class ArticleListViewModel: ObservableObject {
         self.localDataSource = localDataSource
         
         Task {
-            await loadInitialState()
+            await fetchArticles()
         }
     }
     
@@ -150,21 +150,6 @@ class ArticleListViewModel: ObservableObject {
     func clearCache() {
         Task {
             await localDataSource.clearCache()
-        }
-    }
-    
-    // MARK: - Private Methods
-    
-    private func loadInitialState() async {
-        let cachedArticles = await localDataSource.getCachedArticles()
-        let cachedSearchText = await localDataSource.getCachedSearchText()
-        
-        articles = cachedArticles
-        searchText = cachedSearchText
-        
-        // If no cached articles, fetch from network
-        if cachedArticles.isEmpty {
-            await fetchArticles()
         }
     }
 }
