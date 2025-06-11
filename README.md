@@ -4,6 +4,7 @@ Una aplicación iOS nativa desarrollada en SwiftUI que permite explorar las últ
 
 <p align="center">
   <img src="https://github.com/user-attachments/assets/55cba73b-3df5-4dd3-8b24-b4372099e377" width="200"/>
+  <img src="https://github.com/user-attachments/assets/004ab640-6981-4d85-bd38-60f3ab37cfe3" width="200"/>
   <img src="https://github.com/user-attachments/assets/addee68f-902b-4ed5-a68b-e3a9e276e25f" width="200"/>
   <img src="https://github.com/user-attachments/assets/b27df9f7-91f7-41fa-a40a-dde2dbee1d65" width="200"/>
 </p>
