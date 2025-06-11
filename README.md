@@ -2,6 +2,14 @@
 
 Una aplicación iOS nativa desarrollada en SwiftUI que permite explorar las últimas noticias de vuelos espaciales utilizando la API de Space Flight News.
 
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/55cba73b-3df5-4dd3-8b24-b4372099e377" width="200"/>
+  <img src="https://github.com/user-attachments/assets/addee68f-902b-4ed5-a68b-e3a9e276e25f" width="200"/>
+  <img src="https://github.com/user-attachments/assets/b27df9f7-91f7-41fa-a40a-dde2dbee1d65" width="200"/>
+  <img src="https://github.com/user-attachments/assets/61dc58f5-c584-41c3-a570-39177f1a3faa" width="200"/>
+</p>
+
+
 ## 📱 Funcionalidades
 
 - **Listado de artículos**: Visualización de los últimos artículos de noticias espaciales
