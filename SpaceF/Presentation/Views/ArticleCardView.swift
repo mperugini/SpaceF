@@ -20,9 +20,8 @@ struct ArticleCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            // Imagen del artículo con carga optimizada
             if let imageUrl = article.secureImageURL {
-                AsyncImage(url: imageUrl) { phase in
+                CachedAsyncImage(url: imageUrl) { phase in
                     switch phase {
                     case .success(let image):
                         image

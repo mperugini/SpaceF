@@ -26,9 +26,8 @@ struct ArticleDetailView: View {
         GeometryReader { geometry in
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    // Hero Image con URL segura
                     if let secureImageURL = article.secureImageURL {
-                        AsyncImage(url: secureImageURL) { phase in
+                        CachedAsyncImage(url: secureImageURL) { phase in
                             switch phase {
                             case .success(let image):
                                 image
