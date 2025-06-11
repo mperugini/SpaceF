@@ -7,69 +7,69 @@
 
 import SwiftUI
 
+
 struct SkeletonView: View {
+    @State private var animationOffset: CGFloat = -1
+    let height: CGFloat
+    let cornerRadius: CGFloat
+    
+    init(height: CGFloat = 20, cornerRadius: CGFloat = 8) {
+        self.height = height
+        self.cornerRadius = cornerRadius
+    }
+    
     var body: some View {
-        VStack(spacing: 16) {
-            ForEach(0..<3, id: \.self) { _ in
-                SkeletonCard()
+        RoundedRectangle(cornerRadius: cornerRadius)
+            .fill(.gray.opacity(0.3))
+            .frame(height: height)
+            .overlay(
+                RoundedRectangle(cornerRadius: cornerRadius)
+                    .fill(
+                        LinearGradient(
+                            colors: [.clear, .white.opacity(0.8), .clear],
+                            startPoint: .leading,
+                            endPoint: .trailing
+                        )
+                    )
+                    .offset(x: animationOffset * UIScreen.main.bounds.width)
+            )
+            .clipped()
+            .onAppear {
+                withAnimation(.linear(duration: 1.5).repeatForever(autoreverses: false)) {
+                    animationOffset = 1
+                }
             }
-        }
     }
 }
 
-struct SkeletonCard: View {
-    @State private var isShimmering = false
-    
+struct CardSkeleton: View {
     var body: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            // Skeleton Image
-            Rectangle()
-                .fill(Color(.systemGray5))
-                .frame(height: 220)
-                .overlay(
-                    Rectangle()
-                        .fill(
-                            LinearGradient(
-                                colors: [Color.clear, Color.white.opacity(0.3), Color.clear],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            )
-                        )
-                        .offset(x: isShimmering ? 300 : -300)
-                        .animation(.easeInOut(duration: 1.5).repeatForever(autoreverses: false), value: isShimmering)
-                )
-                .clipped()
+        VStack(alignment: .leading, spacing: 12) {
+            // Image skeleton
+            SkeletonView(height: 220, cornerRadius: 12)
             
-            // Skeleton Content
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
-                    RoundedRectangle(cornerRadius: 6)
-                        .fill(Color(.systemGray5))
-                        .frame(width: 80, height: 20)
-                    
+                    SkeletonView(height: 20, cornerRadius: 6)
+                        .frame(width: 80)
                     Spacer()
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(width: 60, height: 16)
+                    SkeletonView(height: 16, cornerRadius: 4)
+                        .frame(width: 60)
                 }
                 
-                VStack(alignment: .leading, spacing: 8) {
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 20)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(width: 250, height: 20)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(height: 16)
-                    
-                    RoundedRectangle(cornerRadius: 4)
-                        .fill(Color(.systemGray5))
-                        .frame(width: 200, height: 16)
+                // Title skeleton
+                VStack(alignment: .leading, spacing: 4) {
+                    SkeletonView(height: 18, cornerRadius: 4)
+                    SkeletonView(height: 18, cornerRadius: 4)
+                        .frame(width: 200)
+                }
+                
+                // Summary skeleton
+                VStack(alignment: .leading, spacing: 4) {
+                    SkeletonView(height: 14, cornerRadius: 4)
+                    SkeletonView(height: 14, cornerRadius: 4)
+                    SkeletonView(height: 14, cornerRadius: 4)
+                        .frame(width: 150)
                 }
             }
             .padding(16)
@@ -77,12 +77,5 @@ struct SkeletonCard: View {
         .background(Color(.systemBackground))
         .cornerRadius(12)
         .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
-        .overlay(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color(.systemGray5), lineWidth: 0.5)
-        )
-        .onAppear {
-            isShimmering = true
-        }
     }
 }

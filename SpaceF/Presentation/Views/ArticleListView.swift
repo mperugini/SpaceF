@@ -12,6 +12,7 @@ struct ArticleListView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var scrollPosition: String?
     @State private var hasInitiallyLoaded = false
+    @State private var pullAmount: CGFloat = 0
     @Namespace private var imageTransition
     
     var body: some View {
@@ -53,6 +54,38 @@ struct ArticleListView: View {
                     await viewModel.fetchArticles()
                 }
             }
+            .onChange(of: viewModel.searchText) { oldValue, newValue in
+                // Handle search cancellation when search text is cleared
+                if !oldValue.isEmpty && newValue.isEmpty {
+                    viewModel.handleSearchCancellation()
+                }
+            }
+            .overlay(
+                // Search state indicator
+                VStack {
+                    if viewModel.searchState != "idle" {
+                        SearchStateIndicator(state: viewModel.searchState)
+                            .padding(.top, 8)
+                            .transition(.move(edge: .top).combined(with: .opacity))
+                            .animation(.spring(), value: viewModel.searchState)
+                    }
+                    Spacer()
+                },
+                alignment: .top
+            )
+            .overlay(
+                // Toast overlay
+                VStack {
+                    Spacer()
+                    if let toastMessage = viewModel.toastMessage {
+                        ToastView(message: toastMessage.message, type: convertToastType(toastMessage.type))
+                            .padding(.horizontal, 16)
+                            .padding(.bottom, 100)
+                            .transition(.move(edge: .bottom).combined(with: .opacity))
+                    }
+                },
+                alignment: .bottom
+            )
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if viewModel.isLoading {
@@ -90,7 +123,7 @@ struct ArticleListView: View {
     @ViewBuilder
     private var contentBasedOnState: some View {
         if shouldShowSkeleton {
-            SkeletonView()
+            skeletonContent
         } else if shouldShowError {
             errorViewContent
         } else if shouldShowEmptyState {
@@ -102,16 +135,12 @@ struct ArticleListView: View {
     
     @ViewBuilder
     private var errorViewContent: some View {
-        if let error = viewModel.errorMessage {
-            ErrorView(
-                message: error,
-                onRetry: {
-                    Task {
-                        await viewModel.fetchArticles()
-                    }
-                }
-            )
+        ErrorView(
+            errorMessage: viewModel.errorMessage ?? "Error desconocido"
+        ) {
+            viewModel.retry()
         }
+        .padding(.horizontal, 32)
     }
     
     @ViewBuilder
@@ -128,14 +157,34 @@ struct ArticleListView: View {
         ForEach(Array(viewModel.articles.enumerated()), id: \.element.id) { index, article in
             NavigationLink {
                 ArticleDetailView(article: article)
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .trailing),
+                        removal: .move(edge: .leading)
+                    ))
             } label: {
                 ArticleCardView(article: article)
             }
-            .buttonStyle(PlainButtonStyle())
+            .buttonStyle(PulsatingButtonStyle())
+            .simultaneousGesture(
+                TapGesture()
+                    .onEnded { _ in
+                        let impactFeedback = UIImpactFeedbackGenerator(style: .light)
+                        impactFeedback.impactOccurred()
+                    }
+            )
             .id(article.id)
+            .transition(.asymmetric(
+                insertion: .move(edge: .trailing).combined(with: .opacity),
+                removal: .scale.combined(with: .opacity)
+            ))
+            .animation(
+                .spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.1)
+                .delay(Double(index % 10) * 0.05), 
+                value: viewModel.articles.count
+            )
             .onAppear {
                 // Scroll infinito: carga mas articulos cuando llegamos cerca del final
-                if index == viewModel.articles.count - 2 && !viewModel.isLoading {
+                if index == viewModel.articles.count - 3 && !viewModel.isLoading && viewModel.hasMorePages {
                     Task {
                         await viewModel.loadMoreArticles()
                     }
@@ -143,8 +192,32 @@ struct ArticleListView: View {
             }
         }
         
+        // Loading indicator mejorado
         if viewModel.isLoading && !viewModel.articles.isEmpty {
-            LoadingIndicatorView()
+            HStack {
+                Spacer()
+                LoadingIndicatorView()
+                Spacer()
+            }
+            .padding(.vertical, 20)
+            .transition(.scale.combined(with: .opacity))
+            .animation(.spring(response: 0.4, dampingFraction: 0.8), value: viewModel.isLoading)
+        }
+    }
+    
+    @ViewBuilder
+    private var skeletonContent: some View {
+        ForEach(0..<5, id: \.self) { index in
+            CardSkeleton()
+                .transition(.asymmetric(
+                    insertion: .move(edge: .trailing).combined(with: .opacity),
+                    removal: .scale.combined(with: .opacity)
+                ))
+                .animation(
+                    .spring(response: 0.6, dampingFraction: 0.8, blendDuration: 0.1)
+                    .delay(Double(index) * 0.1), 
+                    value: hasInitiallyLoaded
+                )
         }
     }
     
@@ -160,5 +233,9 @@ struct ArticleListView: View {
     
     private var shouldShowEmptyState: Bool {
         viewModel.articles.isEmpty && !viewModel.isLoading
+    }
+    
+    private func convertToastType(_ type: ToastType) -> ToastType {
+        return type
     }
 }

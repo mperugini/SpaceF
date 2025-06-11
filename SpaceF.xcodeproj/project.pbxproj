@@ -11,7 +11,6 @@
 		815E32622DF0C3B4003E5117 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32612DF0C3B4003E5117 /* ErrorView.swift */; };
 		815E32642DF0CB3E003E5117 /* ImagePlaceholder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */; };
 		815E32662DF0CB5A003E5117 /* SkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32652DF0CB5A003E5117 /* SkeletonView.swift */; };
-		815E32682DF0CB76003E5117 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */; };
 		815E32712DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32702DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift */; };
 		815E32732DF8AFB3003E5117 /* FetchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32722DF8AFB3003E5117 /* FetchArticlesUseCase.swift */; };
 		815E32752DF8AFEE003E5117 /* SearchArticlesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32742DF8AFEE003E5117 /* SearchArticlesUseCase.swift */; };
@@ -33,6 +32,11 @@
 		815E329B2DF8CF7D003E5117 /* SafariConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E329A2DF8CF7D003E5117 /* SafariConfiguration.swift */; };
 		815E329D2DF90B93003E5117 /* CachedAsyncImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E329C2DF90B93003E5117 /* CachedAsyncImage.swift */; };
 		815E329F2DF90B9C003E5117 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E329E2DF90B9C003E5117 /* ImageCache.swift */; };
+		815E32A32DF9233E003E5117 /* ShimmerEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32A12DF9233E003E5117 /* ShimmerEffect.swift */; };
+		815E32AA2DF93092003E5117 /* ToastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32A92DF93091003E5117 /* ToastView.swift */; };
+		815E32AC2DF930E1003E5117 /* LoadingIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32AB2DF930E1003E5117 /* LoadingIndicatorView.swift */; };
+		815E32AE2DF9311E003E5117 /* SearchStateIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32AD2DF9311E003E5117 /* SearchStateIndicator.swift */; };
+		815E32B02DF9317D003E5117 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 815E32AF2DF9317D003E5117 /* ButtonStyles.swift */; };
 		81C28EA22DEF888600F7E6E5 /* SpaceFApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */; };
 		81C28EA62DEF888800F7E6E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA52DEF888800F7E6E5 /* Assets.xcassets */; };
 		81C28EA92DEF888800F7E6E5 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C28EA82DEF888800F7E6E5 /* Preview Assets.xcassets */; };
@@ -67,7 +71,6 @@
 		815E32612DF0C3B4003E5117 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePlaceholder.swift; sourceTree = "<group>"; };
 		815E32652DF0CB5A003E5117 /* SkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonView.swift; sourceTree = "<group>"; };
-		815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
 		815E32702DF8AF7E003E5117 /* ArticleRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleRepositoryProtocol.swift; sourceTree = "<group>"; };
 		815E32722DF8AFB3003E5117 /* FetchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchArticlesUseCase.swift; sourceTree = "<group>"; };
 		815E32742DF8AFEE003E5117 /* SearchArticlesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArticlesUseCase.swift; sourceTree = "<group>"; };
@@ -89,6 +92,11 @@
 		815E329A2DF8CF7D003E5117 /* SafariConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafariConfiguration.swift; sourceTree = "<group>"; };
 		815E329C2DF90B93003E5117 /* CachedAsyncImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CachedAsyncImage.swift; sourceTree = "<group>"; };
 		815E329E2DF90B9C003E5117 /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		815E32A12DF9233E003E5117 /* ShimmerEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShimmerEffect.swift; sourceTree = "<group>"; };
+		815E32A92DF93091003E5117 /* ToastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToastView.swift; sourceTree = "<group>"; };
+		815E32AB2DF930E1003E5117 /* LoadingIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingIndicatorView.swift; sourceTree = "<group>"; };
+		815E32AD2DF9311E003E5117 /* SearchStateIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchStateIndicator.swift; sourceTree = "<group>"; };
+		815E32AF2DF9317D003E5117 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
 		81C28E9E2DEF888600F7E6E5 /* SpaceF.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpaceF.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81C28EA12DEF888600F7E6E5 /* SpaceFApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpaceFApp.swift; sourceTree = "<group>"; };
 		81C28EA52DEF888800F7E6E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -142,11 +150,15 @@
 		815E326C2DF8A81E003E5117 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				815E32A12DF9233E003E5117 /* ShimmerEffect.swift */,
 				815E32652DF0CB5A003E5117 /* SkeletonView.swift */,
 				815E32612DF0C3B4003E5117 /* ErrorView.swift */,
-				815E32672DF0CB76003E5117 /* LoadingIndicatorView.swift */,
 				815E32632DF0CB3E003E5117 /* ImagePlaceholder.swift */,
 				815E32932DF8BF0D003E5117 /* SplashComponents.swift */,
+				815E32A92DF93091003E5117 /* ToastView.swift */,
+				815E32AB2DF930E1003E5117 /* LoadingIndicatorView.swift */,
+				815E32AD2DF9311E003E5117 /* SearchStateIndicator.swift */,
+				815E32AF2DF9317D003E5117 /* ButtonStyles.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -458,19 +470,23 @@
 			files = (
 				815E32902DF8BE5C003E5117 /* AppCoordinator.swift in Sources */,
 				81C28EF52DEF8EAE00F7E6E5 /* ArticleDetailView.swift in Sources */,
+				815E32AA2DF93092003E5117 /* ToastView.swift in Sources */,
 				815E32942DF8BF0D003E5117 /* SplashComponents.swift in Sources */,
 				815E32602DF0C364003E5117 /* ArticleCardView.swift in Sources */,
+				815E32A32DF9233E003E5117 /* ShimmerEffect.swift in Sources */,
 				81C28EF02DEF8E4800F7E6E5 /* Article.swift in Sources */,
-				815E32682DF0CB76003E5117 /* LoadingIndicatorView.swift in Sources */,
 				815E32962DF8C341003E5117 /* URLSecurity.swift in Sources */,
 				815E32752DF8AFEE003E5117 /* SearchArticlesUseCase.swift in Sources */,
+				815E32B02DF9317D003E5117 /* ButtonStyles.swift in Sources */,
 				815E32822DF8B1A5003E5117 /* DependencyContainer.swift in Sources */,
 				815E32922DF8BE92003E5117 /* RootAppView.swift in Sources */,
+				815E32AC2DF930E1003E5117 /* LoadingIndicatorView.swift in Sources */,
 				815E329B2DF8CF7D003E5117 /* SafariConfiguration.swift in Sources */,
 				815E327E2DF8B121003E5117 /* LocalDataSource.swift in Sources */,
 				815E32802DF8B157003E5117 /* AppConfig.swift in Sources */,
 				815E32772DF8B05F003E5117 /* ArticleRepository.swift in Sources */,
 				81C28EF62DEF8EAE00F7E6E5 /* ArticleListView.swift in Sources */,
+				815E32AE2DF9311E003E5117 /* SearchStateIndicator.swift in Sources */,
 				815E32662DF0CB5A003E5117 /* SkeletonView.swift in Sources */,
 				815E32732DF8AFB3003E5117 /* FetchArticlesUseCase.swift in Sources */,
 				815E327C2DF8B0F5003E5117 /* RemoteDataSource.swift in Sources */,

@@ -9,6 +9,12 @@ import SwiftUI
 
 struct ArticleCardView: View {
     let article: Article
+    @State private var hasAppeared = false
+    @State private var imageLoadingState: ImageLoadingState = .loading
+    
+    enum ImageLoadingState {
+        case loading, loaded, failed
+    }
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -29,10 +35,29 @@ struct ArticleCardView: View {
                             .aspectRatio(contentMode: .fill)
                             .frame(height: 220)
                             .clipped()
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    imageLoadingState = .loaded
+                                }
+                            }
                     case .failure(_):
                         ImagePlaceholder(isError: true)
+                            .onAppear {
+                                withAnimation(.easeInOut(duration: 0.3)) {
+                                    imageLoadingState = .failed
+                                }
+                            }
                     case .empty:
-                        ImagePlaceholder(isError: false)
+                        ZStack {
+                            ShimmerEffect()
+                                .frame(height: 220)
+                            
+                            ProgressView()
+                                .scaleEffect(0.8)
+                        }
+                        .onAppear {
+                            imageLoadingState = .loading
+                        }
                     @unknown default:
                         ImagePlaceholder(isError: true)
                     }
@@ -77,16 +102,27 @@ struct ArticleCardView: View {
         }
         .background(Color(.systemBackground))
         .cornerRadius(12)
-        .shadow(color: Color.black.opacity(0.1), radius: 8, x: 0, y: 2)
+        .shadow(
+            color: Color.black.opacity(0.1), 
+            radius: 8, 
+            x: 0, 
+            y: 2
+        )
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(Color(.systemGray5), lineWidth: 0.5)
         )
+        .opacity(hasAppeared ? 1 : 0)
+        .offset(y: hasAppeared ? 0 : 20)
+        .animation(.spring(response: 0.6, dampingFraction: 0.8).delay(0.1), value: hasAppeared)
         .contentShape(Rectangle())
         .accessibilityElement(children: .combine)
         .accessibilityLabel("Artículo")
         .accessibilityValue("\(article.title). \(article.summary). Publicado por \(article.newsSite) el \(formattedDate)")
         .accessibilityAddTraits(.isButton)
+        .onAppear {
+            hasAppeared = true
+        }
     }
     
     private var formattedDate: String {
@@ -96,4 +132,6 @@ struct ArticleCardView: View {
             return String(article.publishedAt.prefix(10))
         }
     }
+    
+
 }

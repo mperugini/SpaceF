@@ -70,7 +70,7 @@ struct CachedAsyncImage<Content>: View where Content: View {
 
     @MainActor
     private func updatePhase(_ newPhase: AsyncImagePhase) {
-        withAnimation(transaction.animation) {
+        withAnimation(.easeInOut(duration: 0.3)) {
             self.phase = newPhase
         }
     }

@@ -13,6 +13,9 @@ struct ArticleDetailView: View {
     @State private var scrollOffset: CGFloat = 0
     @State private var showShareSheet = false
     @State private var showSafariView = false
+    @State private var imageOffset: CGFloat = -200
+    @State private var contentOpacity: Double = 0
+    @State private var hasAppeared = false
     
     private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -35,6 +38,12 @@ struct ArticleDetailView: View {
                                     .aspectRatio(contentMode: .fill)
                                     .frame(width: geometry.size.width, height: 300)
                                     .clipped()
+                                    .offset(y: imageOffset)
+                                    .onAppear {
+                                        withAnimation(.spring(response: 0.8, dampingFraction: 0.8)) {
+                                            imageOffset = 0
+                                        }
+                                    }
                             case .failure(_):
                                 Rectangle()
                                     .fill(Color(.systemGray5))
@@ -48,19 +57,23 @@ struct ArticleDetailView: View {
                                                 .font(.caption)
                                                 .foregroundColor(.gray)
                                         }
+                                        .opacity(contentOpacity)
                                     )
+                                    .offset(y: imageOffset)
                             case .empty:
-                                Rectangle()
-                                    .fill(Color(.systemGray6))
-                                    .frame(width: geometry.size.width, height: 300)
-                                    .overlay(
-                                        ProgressView()
-                                            .scaleEffect(1.2)
-                                    )
+                                ZStack {
+                                    ShimmerEffect()
+                                        .frame(width: geometry.size.width, height: 300)
+                                    
+                                    ProgressView()
+                                        .scaleEffect(1.2)
+                                }
+                                .offset(y: imageOffset)
                             @unknown default:
                                 Rectangle()
                                     .fill(Color(.systemGray5))
                                     .frame(width: geometry.size.width, height: 300)
+                                    .offset(y: imageOffset)
                             }
                         }
                     }
@@ -71,11 +84,17 @@ struct ArticleDetailView: View {
                             Text(article.title)
                                 .font(.title)
                                 .fontWeight(.bold)
+                                .opacity(contentOpacity)
+                                .animation(.easeInOut(duration: 0.6).delay(0.2), value: contentOpacity)
                             
                             HStack {
                                 Text(article.newsSite)
                                     .font(.subheadline)
                                     .foregroundColor(.blue)
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 6)
+                                    .background(Color.blue.opacity(0.1))
+                                    .cornerRadius(8)
                                 
                                 Spacer()
                                 
@@ -83,27 +102,43 @@ struct ArticleDetailView: View {
                                     .font(.subheadline)
                                     .foregroundColor(.gray)
                             }
+                            .opacity(contentOpacity)
+                            .animation(.easeInOut(duration: 0.6).delay(0.3), value: contentOpacity)
                             
                             Divider()
+                                .opacity(contentOpacity)
+                                .animation(.easeInOut(duration: 0.6).delay(0.4), value: contentOpacity)
                             
                             Text(article.summary)
                                 .font(.body)
                                 .lineSpacing(4)
+                                .opacity(contentOpacity)
+                                .animation(.easeInOut(duration: 0.6).delay(0.5), value: contentOpacity)
                             
                             Button(action: {
+                                impactFeedback()
                                 showSafariView = true
                             }) {
-                                HStack {
+                                HStack(spacing: 8) {
                                     Text("Leer artículo completo")
+                                        .fontWeight(.semibold)
                                     Image(systemName: "arrow.right")
+                                        .font(.system(size: 14, weight: .semibold))
                                 }
                                 .frame(maxWidth: .infinity)
-                                .padding()
-                                .background(Color.blue)
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                                .background(
+                                    RoundedRectangle(cornerRadius: 25)
+                                        .fill(.blue)
+                                        .shadow(color: .blue.opacity(0.3), radius: 8, x: 0, y: 4)
+                                )
                                 .foregroundColor(.white)
-                                .cornerRadius(10)
                             }
-                            .padding(.top)
+                            .buttonStyle(PulsatingButtonStyle())
+                            .padding(.top, 8)
+                            .opacity(contentOpacity)
+                            .animation(.easeInOut(duration: 0.6).delay(0.6), value: contentOpacity)
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
@@ -136,6 +171,19 @@ struct ArticleDetailView: View {
             }
         }
         .background(Color(.systemGroupedBackground))
+        .onAppear {
+            withAnimation(.spring(response: 0.8, dampingFraction: 0.8)) {
+                imageOffset = 0
+            }
+            withAnimation(.easeInOut(duration: 0.6).delay(0.3)) {
+                contentOpacity = 1
+            }
+        }
+    }
+    
+    private func impactFeedback() {
+        let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
+        impactFeedback.impactOccurred()
     }
     
     @ViewBuilder
