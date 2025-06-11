@@ -103,7 +103,7 @@ struct ImageURLValidator {
             return true
         }
         
-        // Si no tiene extensión, asumir que es válida (muchas APIs no usan extensiones)
+        // Si no tiene extensión, asumir que es válida 
         // pero verificar que tenga un host válido
         guard let host = url.host, !host.isEmpty else {
             return false
