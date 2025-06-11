@@ -31,7 +31,7 @@ struct ImagePlaceholder: View {
                             )
                     } else {
                         ProgressView()
-                            .controlSize(.extraLarge)
+                            .controlSize(.large)
                             .scaleEffect(1.2)
                     }
                 }

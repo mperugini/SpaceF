@@ -76,8 +76,7 @@ struct SplashScreenView: View {
                             )
                             .frame(width: 120, height: 120)
                             .overlay(
-                                // Rocket icon
-                                Image(systemName: "rocket.fill")
+                                Image(systemName: "globe.europe.africa.fill")
                                     .font(.system(size: 50, weight: .bold))
                                     .foregroundColor(.white)
                                     .rotationEffect(.degrees(rotationAngle))
