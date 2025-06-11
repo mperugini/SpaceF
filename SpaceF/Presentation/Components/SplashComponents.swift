@@ -176,4 +176,3 @@ struct Particle {
     var color: Color
     var opacity: Double
 }
-
